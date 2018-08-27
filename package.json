@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "npm run build",
     "build": "tslint -p tslint.json && tsc",
-    "test": "nyc mocha",
+    "test": "if [ -z ${ENABLE_XUNIT_REPORTER} ]; then nyc mocha; else nyc mocha --reporter xunit; fi", 
     "coverage:upload": "codecov -f coverage/*.json",
     "update-deps": "node_modules/.bin/ncu --upgrade --loglevel verbose --packageFile package.json && npm update"
   },
